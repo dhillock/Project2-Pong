@@ -1,4 +1,4 @@
-import { SVG_NS } from "../settings.js";
+import { SVG_NS, KEYS } from "../settings.js";
 import Board from "./Board.js";
 import Paddle from "./Paddle.js";
 import Ball from "./Ball.js";
@@ -22,7 +22,9 @@ export default class Game {
       this.paddleWidth,
       this.paddleHeight,
       this.boardGap,
-      (this.height - this.paddleHeight) / 2
+      (this.height - this.paddleHeight) / 2,
+      KEYS.a,
+      KEYS.z
     );
     // console.log(this.width);
 
@@ -31,21 +33,20 @@ export default class Game {
       this.paddleWidth,
       this.paddleHeight,
       this.width - this.paddleWidth - this.boardGap,
-      (this.height - this.paddleHeight) / 2
+      (this.height - this.paddleHeight) / 2,
+      KEYS.up,
+      KEYS.down
     );
 
     this.r = 8;
-    this.cx = 256;
-    this.cy = 128;
-    this.fill = "green";
+    this.fill = "hotPink";
 
-    this.ball = new Ball(this.r, this.cx, this.cy, this.fill);
+    this.ball = new Ball(this.r, this.width, this.height, this.fill);
 
     // console.log(this.player2);
   }
 
   render() {
-    // More code goes here....
     // console.log(this.board);
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
