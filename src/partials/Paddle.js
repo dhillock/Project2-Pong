@@ -7,23 +7,47 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 10;
+    this.speed = 10; // speed of the paddle movement. Could be called distance
     this.score = 0;
 
     document.addEventListener("keydown", event => {
       // console.log(event);
       switch (event.key) {
         case up:
+          this.up();
           // console.log("go up");
-          this.y = this.y - this.speed;
-          console.log("go up");
           break;
         case down:
-          this.y = this.y + this.speed;
-          console.log("go down");
+          // console.log("go down");
+          this.down();
           break;
       }
     });
+  }
+
+  up() {
+    this.y = Math.max(0, this.y - this.speed);
+
+    // if (this.y === 0) {
+    //   this.y = 256;
+    // }
+    // console.log(this.y);
+  }
+
+  down() {
+    this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
+
+    // if (this.y === 200) {
+    //   this.y = -56;
+    // }
+    // console.log(this.y);
+  }
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return [leftX, rightX, topY, bottomY];
   }
 
   render(svg) {
