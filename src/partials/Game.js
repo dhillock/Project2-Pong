@@ -37,7 +37,7 @@ export default class Game {
     this.r = 8;
     this.cx = 256;
     this.cy = 128;
-    this.fill = "red";
+    this.fill = "green";
 
     this.ball = new Ball(this.r, this.cx, this.cy, this.fill);
 
