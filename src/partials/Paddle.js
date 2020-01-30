@@ -9,6 +9,8 @@ export default class Paddle {
     this.y = y;
     this.speed = 10; // speed of the paddle movement. Could be called distance
     this.score = 0;
+    this.fill = "yellow";
+    this.maxScore = 10;
 
     document.addEventListener("keydown", event => {
       // console.log(event);
@@ -28,19 +30,19 @@ export default class Paddle {
   up() {
     this.y = Math.max(0, this.y - this.speed);
 
-    // if (this.y === 0) {
-    //   this.y = 256;
-    // }
-    // console.log(this.y);
+    //dhStretch1a - Wrap Paddle1
+    if (this.y === 0) {
+      this.y = 256;
+    }
   }
 
   down() {
     this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
 
-    // if (this.y === 200) {
-    //   this.y = -56;
-    // }
-    // console.log(this.y);
+    //dhStretch1b - Wrap Paddle2
+    if (this.y === 200) {
+      this.y = -56;
+    }
   }
   coordinates(x, y, width, height) {
     let leftX = x;
@@ -57,7 +59,7 @@ export default class Paddle {
     rect.setAttributeNS(null, "y", this.y);
     rect.setAttributeNS(null, "width", this.width);
     rect.setAttributeNS(null, "height", this.height);
-    rect.setAttributeNS(null, "fill", "white");
+    rect.setAttributeNS(null, "fill", this.fill);
 
     svg.appendChild(rect);
   }

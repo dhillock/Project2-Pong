@@ -10,17 +10,6 @@ export default class Game {
     this.width = width;
     this.height = height;
 
-    // document.addEventListener("keydown", event => {
-    //   // console.log(event.key);
-    //   // console.log(event);
-    //   switch (event.key) {
-    //     case " ":
-    //       //pause here
-    //       console.log("hello", event);
-
-    //   }
-    // });
-
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
 
@@ -57,6 +46,11 @@ export default class Game {
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
 
+    // console.log("player1 Score: ", this.score1);
+    // console.log("player2 Score: ", this.score2);
+    // console.log("This is this.player1: ", this.player1);
+    // console.log("This is this.player2: ", this.player2);
+
     // console.log(this.player2);
     document.addEventListener("keydown", event => {
       switch (event.key) {
@@ -64,6 +58,7 @@ export default class Game {
           this.pause = !this.pause;
           this.player1.speed = 10;
           this.player2.speed = 10;
+          // console.log(this.score1.maxScore);
           break;
       }
     });

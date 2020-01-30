@@ -1,7 +1,7 @@
 import { SVG_NS } from "../settings";
 
 export default class Score {
-  constructor(x, y, size) {
+  constructor(x, y, size, maxScore) {
     this.x = x;
     this.y = y;
     this.size = size;

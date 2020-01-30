@@ -1,4 +1,8 @@
 import { SVG_NS } from "../settings";
+import pingSound from "../../public/sounds/pong-01.wav";
+import pingSound2 from "../../public/sounds/pong-02.wav";
+import pingSound3 from "../../public/sounds/pong-03.wav";
+import pingSound4 from "../../public/sounds/pong-04.wav";
 
 export default class Ball {
   constructor(radius, boardWidth, boardHeight, fill) {
@@ -7,6 +11,8 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.fill = fill;
     this.direction = 1;
+    this.ping = new Audio(pingSound);
+    this.ping2 = new Audio(pingSound2);
     this.reset();
   }
   reset() {
@@ -44,8 +50,10 @@ export default class Ball {
         this.x + this.radius <= rightX &&
         this.y >= topY &&
         this.y <= bottomY
-      )
+      ) {
+        this.ping.play();
         this.vx = -this.vx;
+      }
     } else {
       let paddle = player1.coordinates(
         player1.x,
@@ -59,8 +67,10 @@ export default class Ball {
         this.x - this.radius >= leftX &&
         this.y >= topY &&
         this.y <= bottomY
-      )
+      ) {
+        this.ping2.play();
         this.vx = -this.vx;
+      }
     }
     // console.log(player1);
     // console.log(player2);
@@ -81,12 +91,13 @@ export default class Ball {
   goal(player) {
     player.score++;
     this.reset();
+
     // console.log(player.score);
     // console.log(player);
     if (player.x === 10) {
-      console.log("Player1 Scored");
+      // console.log("Player1 Scored");
     } else {
-      console.log("Player2 Scored");
+      // console.log("Player2 Scored");
     }
   }
 
@@ -118,5 +129,34 @@ export default class Ball {
       this.goal(player2);
       this.direction = -1;
     }
+    ///////////////////////////////
+    //dhStretch2 - If player reaches 80% of maxScore, color paddle green
+    //           - If player reaches 80% of maxScore, make paddle smaller
+
+    // console.log(svg);
+    // alert();
+
+    const pScore1 = player1.score;
+    const pScore2 = player2.score;
+    const mScore = player1.maxScore;
+    // reset the ball
+    console.log(pScore1, pScore2, mScore);
+
+    if ((pScore1 || pScore2) === mScore) {
+      alert("Game over!");
+      //reset game
+      window.location.reload(true);
+    }
+
+    if (pScore1 >= mScore * 0.8) {
+      player1.fill = "green";
+      player1.height = Math.max(26, player1.height - 10);
+    }
+
+    if (pScore2 >= mScore * 0.8) {
+      player1.fill = "orange";
+      player1.height = Math.max(26, player2.height - 10);
+    }
+    //////////////////////////////
   }
 }
