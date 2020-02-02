@@ -120,7 +120,9 @@ export default class Game {
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
 
-    //dhStretch3: At the end of the game, have the loser's score melt off the board.
+    /////////////////////////////////////////////////////////////////////////////////////
+    // dhStretch3 - At the end of the game, have the loser score melt off the screen. ///
+    ////////////////////////////////////////////////////////////////////////////////////
 
     const pScore1 = this.player1.score;
     const pScore2 = this.player2.score;
