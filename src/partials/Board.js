@@ -6,14 +6,18 @@ export default class Board {
     this.height = height;
   }
   render(svg) {
+    // Make the board rectangle
     let rect = document.createElementNS(SVG_NS, "rect");
-    //yourcode here
+
     rect.setAttributeNS(null, "width", this.width);
     rect.setAttributeNS(null, "height", this.height);
     rect.setAttributeNS(null, "fill", "#353535");
+
     // console.log(rect);
+
+    // Make the center line
     let line = document.createElementNS(SVG_NS, "line");
-    //your code here
+
     line.setAttributeNS(null, "x1", this.width / 2);
     line.setAttributeNS(null, "x2", this.width / 2);
     line.setAttributeNS(null, "y1", 0);

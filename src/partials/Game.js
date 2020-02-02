@@ -26,7 +26,6 @@ export default class Game {
       KEYS.a,
       KEYS.z
     );
-    // console.log(this.width);
 
     this.player2 = new Paddle(
       this.height,
@@ -46,6 +45,10 @@ export default class Game {
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
 
+    //dh delete me
+    // this.score1 = new Score(this.width / 2 - 50, 150, 30);
+    // this.score2 = new Score(this.width / 2 + 25, 150, 30);
+
     // console.log("player1 Score: ", this.score1);
     // console.log("player2 Score: ", this.score2);
     // console.log("This is this.player1: ", this.player1);
@@ -55,17 +58,46 @@ export default class Game {
     document.addEventListener("keydown", event => {
       switch (event.key) {
         case KEYS.spaceBar:
-          this.pause = !this.pause;
+          this.pause = !this.pause; // if not paused, then pause. If paused, then unpause.
           this.player1.speed = 10;
           this.player2.speed = 10;
-          // console.log(this.score1.maxScore);
           break;
       }
     });
   }
 
+  secondsDelay(numbSeconds) {
+    const currentDate = new Date();
+    const currentSeconds = currentDate.getSeconds() + 1000; // 1030
+    var waitSeconds = currentSeconds + this.numbSeconds; // 1040
+
+    setTimeout(function() {
+      alert("Hello");
+    }, 1000 * numbSeconds);
+
+    // this.numbSeconds = 10;
+
+    // alert("numbSeconds passed ", this.numbSeconds);
+
+    // // console.log(clockSeconds, this.numbSeconds);
+    // // alert("in secondsDelay");
+    // console.log("currentSeconds ", currentSeconds, "waitSeconds", waitSeconds);
+
+    // for (
+    //   waitSeconds = waitSeconds;
+    //   waitSeconds < currentSeconds;
+    //   waitSeconds++
+    // ) {
+    //   console.log("waitSeconds ", waitSeconds);
+    // }
+  }
+
+  emptyFunction(theParm) {
+    console.log("these seconds have passed: ", this.theParm);
+  }
+
   render() {
-    // console.log(this.board);
+    // If the game is paused, do not render the whole game, simply return
     if (this.pause) {
       this.player1.speed = 0;
       this.player2.speed = 0;
@@ -73,10 +105,13 @@ export default class Game {
     }
 
     this.gameElement.innerHTML = "";
+
     let svg = document.createElementNS(SVG_NS, "svg");
+
     svg.setAttributeNS(null, "width", this.width);
     svg.setAttributeNS(null, "height", this.height);
-    this.gameElement.appendChild(svg);
+
+    this.gameElement.appendChild(svg); // Paint the Screen
 
     this.board.render(svg);
     this.player1.render(svg);
@@ -84,5 +119,48 @@ export default class Game {
     this.ball.render(svg, this.player1, this.player2);
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
+
+    //dhStretch3: At the end of the game, have the loser's score melt off the board.
+
+    const pScore1 = this.player1.score;
+    const pScore2 = this.player2.score;
+    const mScore = this.player1.maxScore;
+    var lCounter = 0;
+    var timeId = 0;
+
+    if ((pScore1 || pScore2) === mScore) {
+      // someone won!
+      console.log(pScore1, pScore2, mScore);
+
+      if (pScore1 > pScore2) {
+        // alert("Player1 won");
+        // Player1 wins, drop player2 score off the board
+
+        for (lCounter = 0; lCounter < 256; lCounter++) {
+          // console.log(lCounter);
+          // timeId = setTimeout(this.emptyFunction(2), 2000);
+
+          this.score2 = new Score(this.width / 2 + 25, 30 + lCounter, 30);
+          this.score2.render(svg, pScore2);
+          // put delay here, so that the score-dropping goes slowly
+        }
+      } else {
+        // player2 wins, drop player1 score off the board
+        alert("player 2 wons ");
+
+        for (lCounter = 0; lCounter < 200; lCounter++) {
+          this.score1 = new Score(this.width / 2 - 50, 30 + lCounter, 30);
+          this.score1.render(svg, this.player2.score);
+
+          // for (lCounter2 = 0; lCounter2 < 100; lCounter2++) {
+          //   console.log("lCounter2b", lCounter, lCounter2);
+          // }
+        }
+      }
+      alert("game is over...in game.js");
+      window.location.reload(true);
+    }
+
+    /////////////////////////// End of dhStretch
   }
 }
