@@ -93,7 +93,13 @@ export default class Game {
   }
 
   emptyFunction(theParm) {
-    console.log("these seconds have passed: ", this.theParm);
+    for (var i = 0; i < 4; i++) {
+      (function(i) {
+        setTimeout(function() {
+          console.log("Hello", i);
+        }, theParm * 1000 * i);
+      })(i);
+    }
   }
 
   render() {
@@ -120,7 +126,7 @@ export default class Game {
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
 
-    /////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
     // dhStretch3 - At the end of the game, have the loser score melt off the screen. ///
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,16 +145,18 @@ export default class Game {
         // Player1 wins, drop player2 score off the board
 
         for (lCounter = 0; lCounter < 256; lCounter++) {
+          // += 10?
           // console.log(lCounter);
           // timeId = setTimeout(this.emptyFunction(2), 2000);
 
           this.score2 = new Score(this.width / 2 + 25, 30 + lCounter, 30);
           this.score2.render(svg, pScore2);
           // put delay here, so that the score-dropping goes slowly
+          this.emptyFunction(1);
         }
       } else {
         // player2 wins, drop player1 score off the board
-        alert("player 2 wons ");
+        // alert("player 2 won ");
 
         for (lCounter = 0; lCounter < 200; lCounter++) {
           this.score1 = new Score(this.width / 2 - 50, 30 + lCounter, 30);
@@ -161,6 +169,7 @@ export default class Game {
       }
       alert("game is over...in game.js");
       window.location.reload(true);
+      //how to put game in pause mode?
     }
 
     /////////////////////////// End of dhStretch

@@ -181,34 +181,34 @@ export default class Ball {
     const mScore = player1.maxScore;
     var winnerText = "";
 
-    console.log(pScore1, pScore2, mScore);
+    // console.log(pScore1, pScore2, mScore);
 
-    if ((pScore1 || pScore2) === mScore) {
-      if (pScore1 > pScore2) {
-        winnerText = "Game over! Player1 won. ";
-      } else {
-        winnerText = "Game over! Player2 won. ";
-      }
-      alert(winnerText + pScore1 + ", " + pScore2);
-      //reset game here
-      window.location.reload(true);
-    }
+    // if ((pScore1 || pScore2) === mScore) {
+    //   if (pScore1 > pScore2) {
+    //     winnerText = "Game over! Player1 won. ";
+    //   } else {
+    //     winnerText = "Game over! Player2 won. ";
+    //   }
+    //   alert(winnerText + pScore1 + ", " + pScore2);
+    //   //reset game here
+    //   window.location.reload(true);
+    // }
 
-    if (pScore1 >= mScore * 0.8) {
-      player1.fill = "green";
-      player1.height = 50; // half height
-      // player1.height = Math.max(36, player1.height - 10);
-    }
+    // if (pScore1 >= mScore * 0.8) {
+    //   player1.fill = "green";
+    //   player1.height = 50; // half height
+    //   // player1.height = Math.max(36, player1.height - 10);
+    // }
 
-    if (pScore2 >= mScore * 0.8) {
-      player2.fill = "orange";
-      player2.height = 50; // half height
-      // player1.height = Math.max(36, player2.height - 10);
-    }
+    // if (pScore2 >= mScore * 0.8) {
+    //   player2.fill = "orange";
+    //   player2.height = 50; // half height
+    //   // player1.height = Math.max(36, player2.height - 10);
+    // }
 
-    if (pScore1 || pScore2 >= mScore * 0.7) {
-      this.ping5.play();
-    }
+    // if (pScore1 || pScore2 >= mScore * 0.7) {
+    //   this.ping5.play();
+    //}
 
     /////////////////////////////////////
   }

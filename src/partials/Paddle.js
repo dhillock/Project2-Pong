@@ -62,8 +62,8 @@ export default class Paddle {
     svg.appendChild(rect); // Paint the screen
 
     //dhDelete me...no paddles and end game quickly!
-    // this.x = -56;
-    // this.y = 256;
-    // this.maxScore = 2;
+    this.x = -56;
+    this.y = 256;
+    this.maxScore = 2;
   }
 }
