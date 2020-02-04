@@ -64,6 +64,6 @@ export default class Paddle {
     //dhDelete me...no paddles and end game quickly!
     this.x = -56;
     this.y = 256;
-    this.maxScore = 2;
+    // this.maxScore = 2;
   }
 }

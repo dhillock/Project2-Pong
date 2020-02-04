@@ -72,7 +72,7 @@ export default class Game {
     var waitSeconds = currentSeconds + this.numbSeconds; // 1040
 
     setTimeout(function() {
-      alert("Hello");
+      // alert("Hello");
     }, 1000 * numbSeconds);
 
     // this.numbSeconds = 10;
@@ -96,8 +96,8 @@ export default class Game {
     for (var i = 0; i < 4; i++) {
       (function(i) {
         setTimeout(function() {
-          console.log("Hello", i);
-        }, theParm * 1000 * i);
+          // console.log("HelloJJJJJ", i);
+        }, theParm * 400000000 * i);
       })(i);
     }
   }
@@ -143,16 +143,27 @@ export default class Game {
       if (pScore1 > pScore2) {
         // alert("Player1 won");
         // Player1 wins, drop player2 score off the board
-
-        for (lCounter = 0; lCounter < 256; lCounter++) {
+        let loserScore = pScore2;
+        let counter2 = 2;
+        for (lCounter = 0; lCounter < 256; lCounter += 35) {
           // += 10?
           // console.log(lCounter);
           // timeId = setTimeout(this.emptyFunction(2), 2000);
 
-          this.score2 = new Score(this.width / 2 + 25, 30 + lCounter, 30);
+          // this.score2 = new Score(this.width / 2 + 25, 30 + lCounter, 30);
+
+          this.score2.textContext = "   ";
           this.score2.render(svg, pScore2);
+          this.score2.textContextr = loserScore;
+          this.score2.y = 30 + lCounter;
+          this.score2.render(svg, pScore2);
+
+          for (counter2 = 0; counter2 < 10000; counter2++) {
+            console.log(counter2);
+          }
           // put delay here, so that the score-dropping goes slowly
-          this.emptyFunction(1);
+          // this.emptyFunction(1);
+          //loop for 1 seconds
         }
       } else {
         // player2 wins, drop player1 score off the board
