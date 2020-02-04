@@ -45,17 +45,9 @@ export default class Game {
     this.score1 = new Score(this.width / 2 - 50, 30, 30);
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
 
-    //dh delete me
-    // this.score1 = new Score(this.width / 2 - 50, 150, 30);
-    // this.score2 = new Score(this.width / 2 + 25, 150, 30);
-
-    // console.log("player1 Score: ", this.score1);
-    // console.log("player2 Score: ", this.score2);
-    // console.log("This is this.player1: ", this.player1);
-    // console.log("This is this.player2: ", this.player2);
-
-    // console.log(this.player2);
     document.addEventListener("keydown", event => {
+      console.log(event.key);
+
       switch (event.key) {
         case KEYS.spaceBar:
           this.pause = !this.pause; // if not paused, then pause. If paused, then unpause.
@@ -66,33 +58,7 @@ export default class Game {
     });
   }
 
-  secondsDelay(numbSeconds) {
-    const currentDate = new Date();
-    const currentSeconds = currentDate.getSeconds() + 1000; // 1030
-    var waitSeconds = currentSeconds + this.numbSeconds; // 1040
-
-    setTimeout(function() {
-      // alert("Hello");
-    }, 1000 * numbSeconds);
-
-    // this.numbSeconds = 10;
-
-    // alert("numbSeconds passed ", this.numbSeconds);
-
-    // // console.log(clockSeconds, this.numbSeconds);
-    // // alert("in secondsDelay");
-    // console.log("currentSeconds ", currentSeconds, "waitSeconds", waitSeconds);
-
-    // for (
-    //   waitSeconds = waitSeconds;
-    //   waitSeconds < currentSeconds;
-    //   waitSeconds++
-    // ) {
-    //   console.log("waitSeconds ", waitSeconds);
-    // }
-  }
-
-  emptyFunction(theParm) {
+  secondsDelay(theParm) {
     for (var i = 0; i < 4; i++) {
       (function(i) {
         setTimeout(function() {
@@ -133,8 +99,8 @@ export default class Game {
     const pScore1 = this.player1.score;
     const pScore2 = this.player2.score;
     const mScore = this.player1.maxScore;
-    var lCounter = 0;
-    var timeId = 0;
+    var lCounter,
+      lCounter2 = 0;
 
     if ((pScore1 || pScore2) === mScore) {
       // someone won!
@@ -143,43 +109,55 @@ export default class Game {
       if (pScore1 > pScore2) {
         // alert("Player1 won");
         // Player1 wins, drop player2 score off the board
+
         let loserScore = pScore2;
         let counter2 = 2;
+
         for (lCounter = 0; lCounter < 256; lCounter += 35) {
-          // += 10?
-          // console.log(lCounter);
-          // timeId = setTimeout(this.emptyFunction(2), 2000);
-
-          // this.score2 = new Score(this.width / 2 + 25, 30 + lCounter, 30);
-
           this.score2.textContext = "   ";
-          this.score2.render(svg, pScore2);
-          this.score2.textContextr = loserScore;
-          this.score2.y = 30 + lCounter;
-          this.score2.render(svg, pScore2);
+          this.score2.render(svg, pScore2); // Render the blank score
 
-          for (counter2 = 0; counter2 < 10000; counter2++) {
-            console.log(counter2);
+          this.score2.textContextr = loserScore; // Load the actual losing score
+
+          this.score2.y = 30 + lCounter; // Set the new scoreboard location for this looser
+          this.score2.render(svg, pScore2); // Render the new scoreboard, with the losing score
+
+          // The game renders 50 times per second
+          for (counter2 = 0; counter2 < 50; counter2++) {
+            // console.log(counter2);
           }
-          // put delay here, so that the score-dropping goes slowly
-          // this.emptyFunction(1);
-          //loop for 1 seconds
+          // Slow down the loop
+          // this.secondsDealy(1)
+          // loop for 1 seconds
         }
       } else {
         // player2 wins, drop player1 score off the board
         // alert("player 2 won ");
 
-        for (lCounter = 0; lCounter < 200; lCounter++) {
-          this.score1 = new Score(this.width / 2 - 50, 30 + lCounter, 30);
-          this.score1.render(svg, this.player2.score);
+        let loserScore = pScore1;
+        let counter2 = 2;
 
-          // for (lCounter2 = 0; lCounter2 < 100; lCounter2++) {
-          //   console.log("lCounter2b", lCounter, lCounter2);
-          // }
+        for (lCounter = 0; lCounter < 256; lCounter += 35) {
+          this.score1.textContext = "   ";
+          this.score1.render(svg, pScore1); // Render the blank score
+
+          this.score1.textContextr = loserScore; // Load the actual losing score
+
+          this.score1.y = 30 + lCounter; // Set the new scoreboard location for this looser
+          this.score1.render(svg, pScore1); // Render the new scoreboard, with the losing score
+
+          // The game renders 50 times per second
+          for (counter2 = 0; counter2 < 50; counter2++) {
+            // console.log(counter2);
+          }
+          // Slow down the loop
+          // this.secondsDealy(1)
+          // loop for 1 seconds
         }
       }
-      alert("game is over...in game.js");
-      window.location.reload(true);
+
+      // alert("game is over...in game.js");
+      // window.location.reload(true);
       //how to put game in pause mode?
     }
 

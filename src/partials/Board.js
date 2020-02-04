@@ -26,8 +26,7 @@ export default class Board {
     line.setAttributeNS(null, "stroke-dasharray", "20, 15");
     line.setAttributeNS(null, "stroke-width", "4");
 
-    //paint the screen
-    svg.appendChild(rect);
-    svg.appendChild(line);
+    svg.appendChild(rect); // Paint the screen
+    svg.appendChild(line); // Paint the screen
   }
 }

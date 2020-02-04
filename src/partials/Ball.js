@@ -56,20 +56,7 @@ export default class Ball {
 
       let [leftX, rightX, topY, bottomY] = paddle;
 
-      // console.log("in paddle collission1", leftX, rightX, topY, bottomY);
-      // console.log("in paddle collission2", this.x, this.y, this.radius);
-      // console.log(
-      //   "The Calc",
-      //   this.x,
-      //   this.y,
-      //   this.radius,
-      //   leftX,
-      //   rightX,
-      //   topY,
-      //   bottomY
-      //);
-
-      // dhStretch...but not fixed: this.y >=   . There is an inadequate calculation here.
+      // dhStretch...but not fixed: this.y >=   . There is an inadequate formula calculation here.
       if (
         this.x + this.radius >= leftX && // A score on player1 (Player2 scored)
         this.x + this.radius <= rightX &&
@@ -181,35 +168,32 @@ export default class Ball {
     const mScore = player1.maxScore;
     var winnerText = "";
 
-    // console.log(pScore1, pScore2, mScore);
+    // Did someone win the game
+    if ((pScore1 || pScore2) === mScore) {
+      // Who won the game?
+      if (pScore1 > pScore2) {
+        winnerText = "Game over! Player1 won. ";
+      } else {
+        winnerText = "Game over! Player2 won. ";
+      }
 
-    // if ((pScore1 || pScore2) === mScore) {
-    //   if (pScore1 > pScore2) {
-    //     winnerText = "Game over! Player1 won. ";
-    //   } else {
-    //     winnerText = "Game over! Player2 won. ";
-    //   }
-    //   alert(winnerText + pScore1 + ", " + pScore2);
-    //   //reset game here
-    //   window.location.reload(true);
-    // }
+      alert(winnerText + pScore1 + ", " + pScore2);
 
-    // if (pScore1 >= mScore * 0.8) {
-    //   player1.fill = "green";
-    //   player1.height = 50; // half height
-    //   // player1.height = Math.max(36, player1.height - 10);
-    // }
+      window.location.reload(true); // Reset Game
+    }
+    // If the game is not over
+    if (pScore1 >= mScore * 0.8) {
+      player1.fill = "green";
+      player1.height = 50; // shrink the paddle
+    }
 
-    // if (pScore2 >= mScore * 0.8) {
-    //   player2.fill = "orange";
-    //   player2.height = 50; // half height
-    //   // player1.height = Math.max(36, player2.height - 10);
-    // }
+    if (pScore2 >= mScore * 0.8) {
+      player2.fill = "orange";
+      player2.height = 50; // shrink the paddle
+    }
 
-    // if (pScore1 || pScore2 >= mScore * 0.7) {
-    //   this.ping5.play();
-    //}
-
-    /////////////////////////////////////
+    if (pScore1 || pScore2 >= mScore * 0.7) {
+      this.ping5.play(); // Play the Funeral March
+    }
   }
 }

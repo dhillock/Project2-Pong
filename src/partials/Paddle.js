@@ -7,7 +7,7 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 30; // speed of the paddle movement. Could be called distance.... It's the distance the paddle moves with a single key stroke
+    this.speed = 40; // speed of the paddle movement. Could be called distance.... It's the distance the paddle moves with a single key stroke
     this.score = 0;
     this.fill = "yellow";
     this.maxScore = 10;
@@ -61,9 +61,9 @@ export default class Paddle {
 
     svg.appendChild(rect); // Paint the screen
 
-    //dhDelete me...no paddles and end game quickly!
-    this.x = -56;
-    this.y = 256;
+    //dhDelete me...no paddles and end game quickly! Keep for testing
+    // this.x = -56;
+    // aaaathis.y = 256;
     // this.maxScore = 2;
   }
 }

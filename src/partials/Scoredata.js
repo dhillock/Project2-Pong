@@ -20,8 +20,6 @@ export default class Score {
 
     // console.log(score);
 
-    // alert("before append");
     svg.appendChild(text); // Paint the screen
-    // alert("after append");
   }
 }
