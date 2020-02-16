@@ -192,7 +192,7 @@ export default class Ball {
       player2.height = 50; // shrink the paddle
     }
 
-    if (pScore1 || pScore2 >= mScore * 0.7) {
+    if ((pScore1 || pScore2) >= mScore * 0.7) {
       this.ping5.play(); // Play the Funeral March
     }
   }
