@@ -50,12 +50,14 @@ More specifically, the emphasis was on building our own Javascript classes and m
 We were also challenged to complete a number of unspecified stretch-goals. Listed below are my stretch goals:
 
 ```
-     - The player paddles were modified so that the wrapped around the screen - for example, left the top of the screen, and entered at the bottom.
-     - If a player reaches 80% of the maxScore, the paddle colour changes to green - indicating that the player is close to winning.
-     - If a player reaches 80% of the maxScore, the paddle height is reduced by 50 percent - making it harder to win.
-     - If a player reaches 70% of the maxScore - meaning the other player is close to losing -- Chopin's Funeral March starts playing.
-     - When the game is over, the loser's score melts off the screen...although i could not get this to "go slowly," as first intented.
-     - After some script modifications, I was able to get the Pong Game to play on an internet platform.
+     - 1) The player paddles were modified so that the wrapped around the screen - for example, left the top of the screen, and entered at the bottom.
+     - 2) If a player reaches 80% of the maxScore, the paddle colour changes to green - indicating that the player is close to winning.
+     - 3) If a player reaches 80% of the maxScore, the paddle height is reduced by 50 percent - making it harder to win.
+     - 4) If a player reaches 70% of the maxScore - meaning the other player is close to losing -- Chopin's Funeral March starts playing.
+     - 5) Added sound when the ball strikes a paddle
+     - 6) When the game is over, the loser's score melts off the screen...although i could not get this to "go slowly," as first intented.
+     - 7) After some script modifications, I was able to get the Pong Game to play on an internet platform.
+          http://dhconsulting.netfirms.com/12Pong/index.html
 
 ```
 

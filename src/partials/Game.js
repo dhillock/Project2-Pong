@@ -46,7 +46,7 @@ export default class Game {
     this.score2 = new Score(this.width / 2 + 25, 30, 30);
 
     document.addEventListener("keydown", event => {
-      console.log(event.key);
+      // console.log(event.key);
 
       switch (event.key) {
         case KEYS.spaceBar:
@@ -103,11 +103,17 @@ export default class Game {
       lCounter2 = 0;
 
     if ((pScore1 || pScore2) === mScore) {
+      //
       // someone won!
-      console.log(pScore1, pScore2, mScore);
+      // console.log(pScore1, pScore2, mScore);
+
+      // wait(5000);
+      // wait(5000); //7 seconds in milliseconds
 
       if (pScore1 > pScore2) {
+        //
         // alert("Player1 won");
+        //
         // Player1 wins, drop player2 score off the board
 
         let loserScore = pScore2;
@@ -129,10 +135,12 @@ export default class Game {
           // Slow down the loop
           // this.secondsDealy(1)
           // loop for 1 seconds
+          // wait(2000);
         }
       } else {
+        // alert("Player2 won");
+        //
         // player2 wins, drop player1 score off the board
-        // alert("player 2 won ");
 
         let loserScore = pScore1;
         let counter2 = 2;
@@ -162,5 +170,13 @@ export default class Game {
     }
 
     /////////////////////////// End of dhStretch
+  }
+}
+/////////////////
+function wait(ms) {
+  var start = new Date().getTime();
+  var end = start;
+  while (end < start + ms) {
+    end = new Date().getTime();
   }
 }

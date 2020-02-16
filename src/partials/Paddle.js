@@ -28,7 +28,7 @@ export default class Paddle {
   up() {
     this.y = Math.max(0, this.y - this.speed);
 
-    //dhStretch1a - Wrap Paddle
+    //dhStretch1a: Wrap Paddle
     if (this.y === 0) {
       this.y = 256; // 256
     }
@@ -37,7 +37,7 @@ export default class Paddle {
   down() {
     this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
 
-    //dhStretch1b - Wrap Paddle
+    //dhStretch1b: Wrap Paddle
     if (this.y === 200) {
       this.y = -56; // 56
     }
@@ -63,7 +63,7 @@ export default class Paddle {
 
     //dhDelete me...no paddles and end game quickly! Keep for testing
     // this.x = -56;
-    // aaaathis.y = 256;
+    // this.y = 256;
     // this.maxScore = 2;
   }
 }
